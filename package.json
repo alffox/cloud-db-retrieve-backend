@@ -1,0 +1,19 @@
+{
+  "name": "cloud-db-retrieve-backend",
+  "version": "1.0.0",
+  "description": "A service to retrieve CloudDB/LocalDB supported DBs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alffox/cloud-db-retrieve-backend.git"
+  },
+  "author": "Alfonso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alffox/cloud-db-retrieve-backend/issues"
+  },
+  "homepage": "https://github.com/alffox/cloud-db-retrieve-backend#readme"
+}
