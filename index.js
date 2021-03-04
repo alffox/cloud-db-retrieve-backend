@@ -31,17 +31,10 @@ app.get("/dblist", function (req, res) {
         });
 
         res.on("end", function () {
-            try {
-                var body = Buffer.concat(chunks);
-                console.log(body.toString());
-            } catch (e) {
-                console.error(e.message);
-            }
+            var body = Buffer.concat(chunks);
+            console.log(body.toString());
         });
-    })
-        .on("error", function (e) {
-            console.log(e.message);
-        });
+    });
 
     req.write(JSON.stringify({ email: email }));
     req.end();
