@@ -33,11 +33,15 @@ app.get("/dblist", function (req, res) {
         res.on("end", function () {
             var body = Buffer.concat(chunks);
             console.log(body.toString());
+            var obj = JSON.parse(body);
+            var ok = obj.token;
+            console.log(ok);
         });
     });
 
     req.write(JSON.stringify({ email: email }));
     req.end();
+    res.end();
 });
 
 app.listen(port, function () {
