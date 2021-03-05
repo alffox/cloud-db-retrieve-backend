@@ -55,10 +55,17 @@ app.get("/dblist", function (req, res) {
 
                 res.on("end", function () {
                     var agents = Buffer.concat(chunks);
-                    //console.log(agents.toString());
                     var agentsJSON = JSON.parse(agents);
-                    console.log(agentsJSON);
 
+                    var agentsArray = agentsJSON["agents"];
+
+                    var names = [];
+
+                    for (var i = 0; i < agentsArray.length; i++) {
+                        var name = agentsArray[i];
+                        names.push(name.name);
+                    }
+                    console.log(names);
                 });
             });
 
