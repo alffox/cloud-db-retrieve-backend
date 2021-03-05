@@ -31,11 +31,11 @@ app.get("/dblist", function (req, res) {
         });
 
         res.on("end", function () {
-            var body = Buffer.concat(chunks);
-            console.log(body.toString());
-            var obj = JSON.parse(body);
-            var ok = obj.token;
-            console.log(ok);
+            var authToken = Buffer.concat(chunks);
+            console.log(authToken.toString());
+            var authTokenJSON = JSON.parse(authToken);
+            var token = authTokenJSON.token;
+            console.log(token);
         });
     });
 
