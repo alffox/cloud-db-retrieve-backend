@@ -11,8 +11,6 @@ app.get("/dblist", function (req, res) {
     const dbListQueryString = req.url.substring("/dblist?email=".length);
     const email = unescape(dbListQueryString);
 
-    console.log(email)
-
     var options = {
         "method": "POST",
         "hostname": "swarm.liferay.int",
@@ -56,7 +54,6 @@ app.get("/dblist", function (req, res) {
                 res.on("end", function () {
                     var agents = Buffer.concat(chunks);
                     var agentsJSON = JSON.parse(agents);
-
                     var agentsArray = agentsJSON["agents"];
 
                     var names = [];
@@ -74,11 +71,12 @@ app.get("/dblist", function (req, res) {
     });
 
     req.write(JSON.stringify({ email: email }));
+
     req.end();
-    res.end();
+    res.end(); //release the connection
 
 });
 
 app.listen(port, function () {
-    console.log("Listening on port " + 3000);
+    console.log("Listening on port " + port);
 });

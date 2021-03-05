@@ -6,7 +6,7 @@ The service will only work when on LiferayHU VPN network.
 ## How to use this server
 1) Ensure you are on the LiferayHU network
 2) Clone the repo locally
-3) `cd` into the root directory, open a terminal/command Line and run `node index.js`
+3) `cd` into the root directory, open a terminal/command line and run `node index.js`
 
 4) You may start calling the service on port `3000` and by providing the Liferay employee `email` address as a parameter at the `/dblist` endpoint, for example:
 
