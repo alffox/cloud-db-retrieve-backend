@@ -7,8 +7,8 @@ const port = 3000;
 
 app.use(morgan("combined"));
 
-app.get("/dblist", function (req, res) {
-    const dbListQueryString = req.url.substring("/dblist?email=".length);
+app.get("/dblist", function (request, response) {
+    const dbListQueryString = request.url.substring("/dblist?email=".length);
     const email = unescape(dbListQueryString);
 
     var options = {
@@ -63,6 +63,10 @@ app.get("/dblist", function (req, res) {
                         names.push(name.name);
                     }
                     console.log(names);
+					
+                    response.statusCode = 200;
+                    response.setHeader('Content-Type', 'application/json');
+                    response.write(JSON.stringify(names));
                 });
             });
 
@@ -73,8 +77,6 @@ app.get("/dblist", function (req, res) {
     req.write(JSON.stringify({ email: email }));
 
     req.end();
-    res.end(); //release the connection
-
 });
 
 app.listen(port, function () {
