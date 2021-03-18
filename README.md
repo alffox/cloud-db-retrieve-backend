@@ -8,14 +8,20 @@ The service will only work when on LiferayHU VPN network.
 2) Clone the repo locally
 3) `cd` into the root directory, open a terminal/command line and run `node index.js`
 
-4) You may start calling the service on port `3000` and by providing the Liferay employee `email` address as a parameter at the `/dblist` endpoint, for example:
+4) In your browser, for example, call this URL:
 
 ```
-curl http://localhost:3000/dblist?email=firstname.lastname%40liferay.com
+http://localhost:3000/dblist?email=alfonso.crisci%40liferay.com
 ```
 
-5) The NodeJS server logs should return an array of available databases for that employee, for example:
+In details: Calling the service on port `3000` and by providing the Liferay employee `email` address (`firstname` + . + `lastname` + `%40liferay.com`) as a parameter at the `/dblist` endpoint.
+
+
+5) The NodeJS server logs should return a `json` object with the list of locally and remotely available DBs, for example:
 
 ```
-[ 'DB2-11.5', 'mariadb-10', 'mssql-2017', 'mysql-56', 'mysql-57', 'mysql-8', 'oracle-19', 'oracle12_2', 'postgres-10', 'postgres-11', 'postgres-94' ]
+{
+localDBs:['mysql','mssql','oracle','mariadb','postgresql','db2','sybase'],
+cloudDBs:['mysql-56','mysql-8','postgresql-94','postgresql-10','mssql-2017','oracle_12.1']
+}
 ```
