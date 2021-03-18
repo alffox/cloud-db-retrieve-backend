@@ -63,7 +63,7 @@ app.get("/dblist", function (request, response) {
                         names.push(name.name);
                     }
                     console.log(names);
-					
+
                     response.statusCode = 200;
                     response.setHeader('Content-Type', 'application/json');
                     response.write(JSON.stringify(names));
@@ -75,8 +75,8 @@ app.get("/dblist", function (request, response) {
     });
 
     req.write(JSON.stringify({ email: email }));
-
     req.end();
+
 });
 
 app.listen(port, function () {
