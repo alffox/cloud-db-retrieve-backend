@@ -5,8 +5,8 @@ const app = express();
 
 const port = 3000;
 
-const databaseVendors = { 
-    'localDBs': ['db2', 'mariadb', 'mssql', 'mysql', 'oracle', 'postgresql', 'sysbase']	
+const databaseVendors = {
+    'localDBs': ['db2', 'mariadb', 'mssql', 'mysql', 'oracle', 'postgresql', 'sysbase']
 };
 
 app.use(morgan("combined"));
@@ -68,8 +68,8 @@ app.get("/dblist", function (request, response) {
                         cloudDBs.push(agent.name);
                     }
                     //console.log(names);
-					
-					databaseVendors.cloudDBs = cloudDBs;
+
+                    databaseVendors.cloudDBs = cloudDBs;
 
                     response.statusCode = 200;
                     response.setHeader('Content-Type', 'application/json');
@@ -81,6 +81,11 @@ app.get("/dblist", function (request, response) {
 
             req.end();
         });
+    });
+
+    process.on('uncaughtException', err => {
+        console.error('There was an error', err)
+        process.exit(1)
     });
 
     req.write(JSON.stringify({ email: email }));
