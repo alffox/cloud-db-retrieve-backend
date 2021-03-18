@@ -5,6 +5,10 @@ const app = express();
 
 const port = 3000;
 
+const databaseVendors = { 
+    'localDBs': ['db2', 'mariadb', 'mssql', 'mysql', 'oracle', 'postgresql', 'sysbase']	
+};
+
 app.use(morgan("combined"));
 
 app.get("/dblist", function (request, response) {
@@ -32,6 +36,7 @@ app.get("/dblist", function (request, response) {
             var authToken = Buffer.concat(chunks);
             var authTokenJSON = JSON.parse(authToken);
             var token = authTokenJSON.token;
+            console.log("Authorized");
 
             var options = {
                 "method": "GET",
@@ -56,18 +61,21 @@ app.get("/dblist", function (request, response) {
                     var agentsJSON = JSON.parse(agents);
                     var agentsArray = agentsJSON["agents"];
 
-                    var names = [];
+                    var cloudDBs = [];
 
                     for (var i = 0; i < agentsArray.length; i++) {
-                        var name = agentsArray[i];
-                        names.push(name.name);
+                        var agent = agentsArray[i];
+                        cloudDBs.push(agent.name);
                     }
-                    console.log(names);
+                    //console.log(names);
+					
+					databaseVendors.cloudDBs = cloudDBs;
 
                     response.statusCode = 200;
                     response.setHeader('Content-Type', 'application/json');
-                    response.write(JSON.stringify(names));
-					response.end();
+                    response.write(JSON.stringify(databaseVendors));
+                    response.end();
+                    console.log("Sent Response");
                 });
             });
 
